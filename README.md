@@ -4,13 +4,14 @@
 [I. Introducton](#modau)
 
 [II. Getting Start](#batdau)
-- [1. Step 1: Container](#step1)
-- [2. Step 2: Docker](#step2)
-- [3. Step 3: Quản trị Docker.](#step3)
-- [4. Step 4: Quản lý container](#step4)
-- [5. Step 5: Quản lý Volume](#step5)
-- [6. Step 6: Quản lý Network](#step6)
-- [7. Step 7: Dockerfile](#step7)
+- [1. Container](#step1)
+- [2. Docker](#step2)
+- [3. Quản trị Docker.](#step3)
+- [4. Quản lý container](#step4)
+- [5. Quản lý image](#step5)
+- [6. Quản lý Volume](#step6)
+- [7. Quản lý Network](#step7)
+- [8. Dockerfile](#step8)
 
 [III. Summary](#Tongket)
 
@@ -105,33 +106,35 @@ Trong một số trường hợp bạn cần truy cập vào bash của containe
 Ví dụ, để truy xuất vào bash của container “some-nginx” mà ta mới tạo, câu lệnh. 
 > docker exec -ti some-nginx bash 
 
-Sau câu lệnh trên thì bạn sẽ truy cập trực tiếp vào bên trong container “some-nginx”. 
-Quản lý image. 
-Để liệt kê danh sách các image đã được download về máy, câu lệnh 
-> docker images 
-
-Hoặc cũng có thể dùng 
-> docker image list 
-
-Để xóa image đang có, ta dùng câu lệnh 
-> docker rmi <image id> 
-
-Hoặc câu lệnh sau. 
-> docker image rm <image id> 
-
-Chú ý, bạn nên list ra danh sách các image rồi mới có thể lấy được “image id” 
-Để download image từ docker hub thì có thể dùng 
-> docker pull <image name> 
-
-Hay có thể dùng 
-> docker image pull <image name> 
-
-Để có thể biết được thông tin của image, thực hiện 
-> docker inspect <image id> 
+- Sau câu lệnh trên thì bạn sẽ truy cập trực tiếp vào bên trong container “some-nginx”. 
 
 <a name="step5"></a>
-## 5. Quản lý Volume (chỗ lưu trữ) 
-Tương tự như image, ta cũng có thể làm các thao tác tạo, xóa, liệt kê và xem thông tin volume. 
+## 5.  Quản lý image. 
+- Để liệt kê danh sách các image đã được download về máy, câu lệnh 
+> docker images 
+
+- Hoặc cũng có thể dùng 
+> docker image list 
+
+- Để xóa image đang có, ta dùng câu lệnh 
+> docker rmi <image id> 
+
+- Hoặc câu lệnh sau. 
+> docker image rm <image id> 
+
+- Chú ý, bạn nên list ra danh sách các image rồi mới có thể lấy được “image id” 
+- Để download image từ docker hub thì có thể dùng 
+> docker pull <image name> 
+
+- Hay có thể dùng 
+> docker image pull <image name> 
+
+- Để có thể biết được thông tin của image, thực hiện 
+> docker inspect <image id> 
+
+<a name="step6"></a>
+## 6. Quản lý Volume (chỗ lưu trữ) 
+- Tương tự như image, ta cũng có thể làm các thao tác tạo, xóa, liệt kê và xem thông tin volume. 
 > docker volume create <volume name> 
 
 > docker volume rm <volume id> 
@@ -139,13 +142,13 @@ Tương tự như image, ta cũng có thể làm các thao tác tạo, xóa, li�
 > docker volume ls 
 
 > docker volume inspect <volume id> 
-Ngoài ra còn các option khác, bạn có thể dùng help để xem cụ thể 
+- Ngoài ra còn các option khác, bạn có thể dùng help để xem cụ thể 
 > docker volume --help 
 
-<a name="step6"></a>
-## 6. Quản lý Network. 
-Network ở đây là tạo 1 subnet riêng cho từng container hoặc một nhóm container riêng biệt, mục đích là để tách riêng cho các container này ko liên lạc được vì an toàn thông tin chẳng hạn. 
-Tương tự với Image và Volume, chúng ta cũng có thể tạo, xóa, liệt kê và xem thông tin từng network. 
+<a name="step7"></a>
+## 7. Quản lý Network. 
+- Network ở đây là tạo 1 subnet riêng cho từng container hoặc một nhóm container riêng biệt, mục đích là để tách riêng cho các container này ko liên lạc được vì an toàn thông tin chẳng hạn. 
+- Tương tự với Image và Volume, chúng ta cũng có thể tạo, xóa, liệt kê và xem thông tin từng network. 
 > docker network create <network name> 
 
 > docker network rm <network id/name> 
@@ -156,11 +159,11 @@ Tương tự với Image và Volume, chúng ta cũng có thể tạo, xóa, li�
 Hoặc bạn có thể tìm hiểu thêm với help. 
 > docker network –help
 
-<a name="step7"></a>
-## 7. Dockerfile 
+<a name="step8"></a>
+## 8. Dockerfile 
 Dockerfile là một file setup scripting, nó sẽ thực thi một loạt các cài đặt library hoặc các bước chuẫn bị cho application. Mục đích của file này là sau khi hoàn thành thì nó sẽ tạo ra một file image mới hoàn toàn theo ý của bạn. 
 `Ví dụ:` bạn muốn có file image mà chạy cả postfix và dovecot chung 1 container, thì dockerfile sẽ là cái mà bạn cần lưu tâm. 
-Dưới đây mình có gợi ý cơ bản về Dockerfile như sau. 
+- Dưới đây mình có gợi ý cơ bản về Dockerfile như sau. 
 > Download image của debian 
 FROM debian:jessie-slim 
 
@@ -177,7 +180,7 @@ DEBIAN_FRONTEND=noninteractive
 
 > COPY ./openerp6.tar.gz /tmp 
 
- Thực hiện một loạt cài đặt, giải nén file v.v… 
+- Thực hiện một loạt cài đặt, giải nén file v.v… 
 ``` sh
 RUN set -x \ 
 && mkdir /usr/share/man/man1 \ 
@@ -199,9 +202,9 @@ Docker file trên là cơ bản cho hầu hết các image hiện nay. Bạn có
 Sau khi hoàn tất file docker, bạn cho build image, đầu tiên đi vào đường dẫn mà đang đang chứa file có tên là Dockerfile, sau đó thực thi câu lệnh 
 >  docker build . -t <tag name> 
 
-Tag name là tên của image và version, VD: “openerp/1.0”, nếu không có tag name thì docker sẽ tự tạo image id. Có thể trong lúc tạo image, docker sẽ trả về error vì sai cấu trúc, bạn chỉ cần follow theo chỗ sai và sửa trên 
+- Tag name là tên của image và version, VD: “openerp/1.0”, nếu không có tag name thì docker sẽ tự tạo image id. Có thể trong lúc tạo image, docker sẽ trả về error vì sai cấu trúc, bạn chỉ cần follow theo chỗ sai và sửa trên 
 dockerfile. 
-Sau khi hoàn thành thì bạn có thể dùng “# docker images” để liệt kê ra cái image mà bạn mới tạo.
+- Sau khi hoàn thành thì bạn có thể dùng “# docker images” để liệt kê ra cái image mà bạn mới tạo.
 
 <a name="tongket"></a>
 ## III. Summary:
