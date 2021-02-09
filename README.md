@@ -10,7 +10,7 @@
 - [4. Step 4: Quản lý container](#step4)
 - [5. Step 5: Quản lý Volume](#step5)
 - [6. Step 6: Quản lý Network](#step6)
-- [7. Step 7](#step7)
+- [7. Step 7: Dockerfile](#step7)
 
 [III. Summary](#Tongket)
 
